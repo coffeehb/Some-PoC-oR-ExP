@@ -1,0 +1,11 @@
+漏洞名称:
+PHPCMS V9 WAP模块注入漏洞
+文件位置：/phpcms/modules/wap/index.php
+
+漏洞函数：comment_list()
+
+未过滤参数：$_GET['commentid']
+
+触发条件：开启WAP模块
+
+触发漏洞：index.php?m=wap&c=index&a=comment_list&commentid=content_12%2527-84-1
