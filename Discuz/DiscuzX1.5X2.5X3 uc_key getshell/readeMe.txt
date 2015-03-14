@@ -1,0 +1,7 @@
+Python版本使用方法：
+
+python uckey.py http://www.waitalone.cn/ uckey
+
+即第一个参数是网站的根路径，第二个参数是uc_key。获取的webshell是在/config/config_ucenter.php中的。
+
+Php版本使用方法：
