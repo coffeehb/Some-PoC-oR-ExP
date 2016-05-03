@@ -10,5 +10,6 @@ usage: win_weblogic_exp.py [-h] [-target TARGET] [-port PORT] [-cmd CMD]
   -rfile RFILE    remote file.
 
 
-
+详细说明请看paper：
+http://www.heysec.org/archives/685
   
