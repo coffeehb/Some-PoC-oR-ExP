@@ -104,7 +104,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     args_dict = args.__dict__
 
-# http://121.42.140.160:8081/qlzhny_xxhpt/qtLoginhome.action
+
     try:
         if not (args_dict['url'] == None):
             url = args_dict['url']
