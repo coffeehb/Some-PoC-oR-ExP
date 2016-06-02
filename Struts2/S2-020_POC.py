@@ -24,7 +24,7 @@ class WavsPlugin():
     浏览器访问验证-Linux目标：http://121.42.xxx.xxx:8081/xxx//S2020/etc/passwd
 不存在漏洞:
     [sorry!!]
-    http://www.cdu.edu.cn/index.php is no vulnerable..
+    http://www.csu.wsu.cn/index.php is no vulnerable..
 '''
     def verity(self):
         print self.banner
