@@ -1,2 +1,1 @@
-# SomePOC
-收集的各种poc脚本
+各种漏洞PoC、ExP的收集或编写
