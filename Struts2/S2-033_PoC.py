@@ -3,6 +3,9 @@
 # S2-033 POC
 # Author: CF_HB
 # 时间：2016年6月6日
+# 漏洞编号：CVE-2016-3087 (S2-033)
+# 漏洞详情：http://blog.nsfocus.net/apache-struts2-vulnerability-technical-analysis-protection-scheme-s2-033/
+
 
 import requests
 import argparse
