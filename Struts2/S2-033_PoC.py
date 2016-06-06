@@ -26,7 +26,7 @@ def verity(url):
         if res.status_code == 200 and "290860253718" == res.content:
             print "{url} is vulnerable S2-033.".format(url=url)
         else:
-            print "{url} is no vulnerable..".format(url=url)
+            print "{url} is not vulnerable..".format(url=url)
     except Exception, e:
         print "Failed to connection target, try again.."
 parser = argparse.ArgumentParser()
