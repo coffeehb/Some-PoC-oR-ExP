@@ -47,7 +47,7 @@ def verity(url):
         print "."*len(url)
         s = requests.session()
         res = s.post(poc_url, timeout=4)
-        if res.status_code == 200 and "290860253718" == res.content:
+        if res.status_code == 200 and "290860253718" in res.content:
             return True
         else:
             return False
