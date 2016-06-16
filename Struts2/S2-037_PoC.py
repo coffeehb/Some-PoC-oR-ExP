@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 # S2-037 POC
 # Author: CF_HB
+# 来源：http://zone.wooyun.org/content/27865
 # 时间：2016年6月15日
 
 import requests

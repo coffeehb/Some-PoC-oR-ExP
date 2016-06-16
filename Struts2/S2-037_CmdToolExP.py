@@ -9,6 +9,7 @@ banner = u'''\
 # Author:CF_HB
 # 时间：2016年6月15日
 # 参考：https://mp.weixin.qq.com/s?__biz=MzAwNTYwMjM3Mw==&mid=2651680334&idx=1&sn=5c9adb02a1c11d9bbff3ffddb639d62f&scene=1&srcid=06155PRaQh7SaMEXd9Gm8hJz&key=18e81ac7415f67c47805fa13645fc0bfbfc346925f00cad995baf01c4d39f50db871ab4deb12eb91e46ff14b0570894a&ascene=0&uin=MTgyMDIxMTIw&devicetype=iMac+MacBookPro12%2C1+OSX+OSX+10.11.5+build(15F34)&version=11020201&pass_ticket=kA0Saphd78eTEUnR4OiUT95KlcsA12Avul8RmKbOClA%3D
+# 参考：http://zone.wooyun.org/content/27865
 #使用说明：
 # 1、检测
     python S2-037_CmdToolExP.py -u http://xxx.xxx.xxx.xxx/xx/ -check yes
