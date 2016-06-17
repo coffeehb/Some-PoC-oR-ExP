@@ -49,7 +49,7 @@ def verity(url):
         print "."*len(url)
         s = requests.session()
         res = s.post(poc_url, timeout=4)
-        if res.status_code == 200 and "25F9E794323B453885F5181F1B624D0B" in res.content:
+        if res.status_code == 200 and "25F9E794323B453885F5181F1B624D0B" in res.content and "DEFAULT_MEMBER_ACCESS" not in res.content:
             return True
         else:
             return False
