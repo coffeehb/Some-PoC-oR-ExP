@@ -50,7 +50,10 @@ def verity(url):
         s = requests.session()
         res = s.post(poc_url, timeout=4)
         if res.status_code == 200 and "25F9E794323B453885F5181F1B624D0B" in res.content:
-            return True
+            if len(res.content) <40: # 34 length
+                return True
+            else:
+                return False
         else:
             return False
 

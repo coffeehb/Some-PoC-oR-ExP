@@ -25,7 +25,10 @@ def verity(url):
         s = requests.session()
         res = s.post(poc_url, timeout=4)
         if res.status_code == 200 and "25F9E794323B453885F5181F1B624D0B" in res.content:
-            print "{url} is vulnerable S2-037.".format(url=url)
+            if len(res.content) <40: # may be 34 length
+                print "{url} is vulnerable S2-037.".format(url=url)
+            else:
+                print "{url} is no vulnerable..".format(url=url)
         else:
             print "{url} is no vulnerable..".format(url=url)
     except Exception, e:
