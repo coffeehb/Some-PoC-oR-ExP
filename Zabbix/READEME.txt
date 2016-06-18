@@ -1,0 +1,16 @@
+# EXP来源：https://packetstormsecurity.com/files/137454/Zabbix-3.0.3-Remote-Command-Execution.html
+#
+# Exploit Title: Zabbix RCE with API JSON-RPC
+# Date: 06-06-2016
+# Exploit Author: Alexander Gurin
+# Vendor Homepage: http://www.zabbix.com
+# Software Link: http://www.zabbix.com/download.php
+# Version: 2.2 - 3.0.3
+# Tested on: Linux (Debian, CentOS)
+# CVE : N/A
+
+使用前提:
+   1. zabbix版本在2.2至3.0.3
+   2. 知道zabbix的口令
+
+修改脚本的IP地址，口令然后python xxxx.py执行即可          
