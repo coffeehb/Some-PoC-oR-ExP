@@ -100,7 +100,7 @@ if __name__ == '__main__':
     parser.add_argument('-u', help='the target url.', required=True)
     parser.add_argument('-check', help='yes|no', required=False)
     parser.add_argument('-shell', help='get os shell (yes|no)', required=False)
-    parser.add_argument('-command', help='yes|no', required=False)
+    parser.add_argument('-command', help='one os command', required=False)
     args = parser.parse_args()
     args_dict = args.__dict__
 
