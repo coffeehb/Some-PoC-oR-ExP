@@ -1,0 +1,31 @@
+泛微e-cology存在文件上传漏洞，由于 /docs/networkdisk/checkFolderCanDelete.jsp 页面过滤不严格导致允许无限制地上传文件，攻击者可以通过该漏洞直接获取网站权限。
+/docs/networkdisk/checkFolderCanDelete.jsp 页面 folderids 参数过滤不严，攻击者可获取数据库信息和服务器权限。
+泛微OAe-cology版本接口存在信息泄露，泄露路径为 /mobile/plugin/SyncUserInfo.jsp，泄露应用用户的登录信息和密码等信息
+该漏洞属于泛微OA的通用型漏洞，攻击者可以通过精心构造的语句进行注入攻击，成功利用漏洞的攻击者可以获取服务器中的数据。
+泛微E-cology /wui/theme/ecology7/page/login.jsp 页面 templateId 参数过滤不严，攻击者可获取数据库信息和服务器权限。
+泛微e-office /E-mobile/emailreply_page.php 页面 detailid 参数过滤不严，攻击者可获取数据库信息和服务器权限。
+泛微e-cology workflowid参数存在SQL注入漏洞。/RequestOperation.jsp页面workflowid参数过滤不严，攻击者可获取数据库信息。
+在 /webservice/upload.php 过滤不严格导致允许无限制地上传文件，攻击者可以通过该漏洞直接获取网站权限。
+泛微e-cology系统是国内应用广泛的一款面向大中型企业的平台型协同管理软件产品。 泛微e-cology OA存在数据库配置信息泄露漏洞，攻击者通过访问特定页面，可以直接获取数据库配置信息。如果攻击者可直接访问数据库，则可直接获取用户数据，甚至可以直接控制数据库服务器。
+泛微e-cology OA系统的WorkflowCenterTreeData接口在使用Oracle数据库时,由于内置SQL语句拼接不严,导致泛微e-cology OA系统存在SQL注入漏洞。攻击者利用该漏洞，可在未授权的情况下，远程发送精心构造的SQL语句，从而获取数据库敏感信息。
+泛微e-cology OA系统自带BeanShell组件且开放未授权访问，攻击者调用BeanShell组件接口可直接在目标服务器上执行任意命令，造成远程代码执行漏洞。
+泛微e-office email_page.php 页面过滤不严，导致存在SQL注入漏洞，泄露数据库中的敏感信息。
+泛微e-office sms_page.php 页面过滤不严，导致存在SQL注入漏洞，泄露数据库中的敏感信息。
+泛微e-office login_other.php 存在SQL注入漏洞，攻击者可以利用此问题获取应用敏感信息。
+泛微协同管理应用平台（e-cology）是一套协同商务平台。 E-cology系统存在SQL注入漏洞，由于templateid参数缺少过滤，攻击者利用漏洞可获取数据库信息。
+泛微e-cology HrmCareerApplyWorkView.jsp 存在SQL注入漏洞，攻击者可以利用此问题获取应用系统敏感信息。
+泛微E-cology LoginHomepage.jsp 存在 SQL注入漏洞，攻击者可以利用此问题获取应用系统敏感信息。
+泛微 E-cology weaver.file.SignatureDownLoad功能页面的markId参数过滤不严，导致存在文件下载漏洞，可利用该漏洞获取系统中的敏感文件信息。
+weaver.file.SignatureDownLoad类过滤不严，导致存在注入漏洞，可被利用获取数据库的敏感信息。
+泛微e-cology jqueryFileTree.jsp 存在目录遍历漏洞，攻击者可以利用此文件收集应用服务器文件、目录信息。
+泛微e-cology HrmCareerApplyAdd.jsp页面careerid参数过滤不严，导致存在SQL注入漏洞。
+泛微e-cology HrmCareerApplyPerView.jsp 页面过滤不严，导致存在SQL注入漏洞，泄露数据库中的敏感信息。
+泛微e-office flowimg.php页面过滤不严，导致存在SQL注入漏洞，可以利用该漏洞获取数据库中的敏感信息。
+泛微e-office过滤不严，导致可以直接获取数据库链接文件，泄露敏感信息。
+泛微e-office /general/new_mytable/content_list/content_-99.php页面过滤不严，存在SQL注入漏洞，可以利用获取数据库中的敏感信息。
+泛微e-office priv_xml.php页面过滤不严，导致存在SQL注入漏洞，可以利用该漏洞获取数据库中的敏感信息。
+泛微e-cology的HrmCareerApplyPerEdit.jsp页面的id参数过滤不严，导致存在 SQL注入漏洞，存在漏洞的文件： /web/careerapply/HrmCareerApplyPerEdit.jsp。
+userid信息泄露+SQL注入
+http://220.xx.122.x:288/contract/base/getHrmInfo.jsp?userid=4
+/mobile/plugin/contract/base/getHrmInfo.jsp?userid=4-charindex('§x§',db_name())
+
