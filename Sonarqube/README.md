@@ -1,5 +1,8 @@
 ## Sonarqube 9000端口，扫描引擎未授权访问漏洞利用工具「下载源码」
 
+外文报道：
+
+https://www.bleepingcomputer.com/news/security/fbi-hackers-stole-government-source-code-via-sonarqube-instances/
 
 ### 1、如何找到Sonarqube
 - 可以使用这个shando脚本：
