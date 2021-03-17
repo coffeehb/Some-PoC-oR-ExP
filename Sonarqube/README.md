@@ -1,4 +1,4 @@
-## Sonarqube 9000端口，扫描引擎未授权访问的下载源码利用工具
+## Sonarqube 9000端口，扫描引擎未授权访问漏洞利用工具「下载源码」
 
 
 ### 1、如何找到Sonarqube
@@ -20,4 +20,5 @@ https://github.com/random-robbie/My-Shodan-Scripts/blob/3639d05e0d6a4cfdba0dc187
  
  ![avatar](2.png)
 
- 
+### 警告⚠️
+🈲️ 止用于非法行为，仅用于红蓝对抗之信息收集，寻找突破口使用。
