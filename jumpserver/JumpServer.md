@@ -4,3 +4,6 @@
 
 - https://github.com/Veraxy00/Jumpserver-EXP/blob/main/jumpserver-exp.py
 - https://mp.weixin.qq.com/s/ESKRMxYMdEGlmHBKx17oOA
+
+- 打不成功，试一试 koko改成coco看看
+
